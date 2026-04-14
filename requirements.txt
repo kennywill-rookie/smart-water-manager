@@ -1,0 +1,6 @@
+streamlit
+pandas
+plotly
+requests
+paho-mqtt
+python-dotenv

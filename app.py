@@ -18,7 +18,7 @@ headers = {
 }
 
 # --- Data Fetching ---
-@st.cache_data(ttl=10) # Refresh data every 10 seconds
+@st.cache_data(ttl=600) # Refresh data every 10 minutes (matches MQTT data interval)
 def fetch_data():
     try:
         # Fetch last 100 records
@@ -101,6 +101,6 @@ else:
         st.dataframe(df)
 
 # Auto-refresh
-st.info("The dashboard auto-refreshes every 10 seconds.")
-time.sleep(10)
+st.info("The dashboard auto-refreshes every 10 minutes.")
+time.sleep(600)
 st.rerun()

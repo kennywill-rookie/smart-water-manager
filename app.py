@@ -88,6 +88,10 @@ html, body, [class*="css"] {
     border-radius: 10px;
     padding: 1rem 1.2rem;
     text-align: center;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .kpi-label {
     font-size: 0.7rem;

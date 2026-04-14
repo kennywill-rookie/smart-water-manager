@@ -107,6 +107,28 @@ div[data-testid="stRadio"] { margin-bottom: -0.5rem; }
     text-align: center; color: #94A3B8; font-size: 0.9rem;
     padding: 3rem 1rem;
 }
+/* === Mobile Responsive === */
+@media (max-width: 768px) {
+    .block-container { padding-top: 1rem; padding-left: 1rem; padding-right: 1rem; }
+    .dashboard-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; padding: 1rem 1.25rem; }
+    .dashboard-header .header-left h1 { font-size: 1.2rem; }
+    .kpi-card { min-height: 100px; padding: 0.8rem; }
+    .kpi-value { font-size: 1.4rem; }
+    .kpi-label { font-size: 0.62rem; }
+    .kpi-label-ko { font-size: 0.62rem; }
+    .section-title { font-size: 0.75rem; }
+    .roadmap-phase { padding: 1rem; }
+    .roadmap-phase h4 { font-size: 0.9rem; }
+    .roadmap-phase p { font-size: 0.8rem; }
+    .footer-text { font-size: 0.65rem; }
+}
+
+@media (max-width: 480px) {
+    .dashboard-header .header-left h1 { font-size: 1.05rem; }
+    .dashboard-header .header-left .subtitle { font-size: 0.7rem; }
+    .kpi-value { font-size: 1.2rem; }
+    .kpi-card { min-height: 90px; }
+}
 </style>
 """, unsafe_allow_html=True)
 

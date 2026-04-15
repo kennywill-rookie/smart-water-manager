@@ -132,6 +132,15 @@ div[data-testid="stRadio"] { margin-bottom: -0.5rem; }
 </style>
 """, unsafe_allow_html=True)
 
+# --- Data Filtering ---
+def filter_water_level(df):
+    """Remove sensor outliers: replace 0% with last valid reading, then smooth with rolling median."""
+    df = df.sort_values('created_at').copy()
+    df.loc[df['water_level'] == 0, 'water_level'] = pd.NA
+    df['water_level'] = df['water_level'].ffill().bfill()
+    df['water_level'] = df['water_level'].rolling(window=5, min_periods=1, center=True).median()
+    return df.sort_values('created_at', ascending=False).reset_index(drop=True)
+
 # --- Data Fetching ---
 @st.cache_data(ttl=600)
 def fetch_data():
@@ -143,7 +152,7 @@ def fetch_data():
             df = pd.DataFrame(data)
             if not df.empty:
                 df['created_at'] = pd.to_datetime(df['created_at'])
-                return df
+                return filter_water_level(df)
         return pd.DataFrame()
     except Exception as e:
         st.error(f"Error fetching data: {e}")
@@ -159,7 +168,7 @@ def fetch_all_data():
             df = pd.DataFrame(data)
             if not df.empty:
                 df['created_at'] = pd.to_datetime(df['created_at'])
-                return df
+                return filter_water_level(df)
         return pd.DataFrame()
     except Exception as e:
         return pd.DataFrame()
